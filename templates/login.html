@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Login</h1>
+<form method="post">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" required>
+  </div>
+  <p></p>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <p></p>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<hr>
+<div class="alert alert-info" role="alert">
+  Not a member? <a href="{{ url_for('register') }}" class="alert-link">Sign up now!</a>
+</div>
+
+
+{% endblock %}

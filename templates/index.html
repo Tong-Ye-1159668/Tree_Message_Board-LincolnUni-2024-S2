@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if session.user_id %}
+<p>Welcome back, {{ session.username }}!</p>
+<p><a href="/messages">View Messages</a></p>
+{% else %}
+<div class="hometitle1">
+  <p>Welcome to Tree Tiffs</p>
+</div>
+<div class="hometitle2">
+  <p>This forum is members only. Please Sign up to start sharing your tree tiffs!</p>
+</div>
+
+<div class="msg">{{ msg }}</div>
+{% endif %}
+
+
+{% endblock %}
