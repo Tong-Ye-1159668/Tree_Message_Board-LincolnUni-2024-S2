@@ -62,7 +62,7 @@
         {% if session.user_id %}
         <a href="#" data-bs-toggle="modal" data-bs-target="#navbModal">
           <img src="{{ url_for('static', filename='profile_images/' ~ session.profile_image) }}" alt="Profile Image"
-            class="rounded-circle" width="50px">
+            class="rounded-circle" width="40px">
         </a>
         {% else %}
         <a href="#" data-bs-toggle="modal" data-bs-target="#navbModal">

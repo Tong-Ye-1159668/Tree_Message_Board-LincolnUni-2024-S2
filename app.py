@@ -56,11 +56,15 @@ def roles_required(*roles):
         def wrapped_view(*args, **kwargs):
             if 'role' not in session or session['role'] not in roles:
                 return redirect(url_for('index'))
+            cursor = getCursor()
+            cursor.execute("SELECT status FROM users WHERE user_id = %s", (session['user_id'],))
+            user = cursor.fetchone()
+            if user['status'] == 'inactive':
+                return redirect(url_for('inactive_account'))
             return f(*args, **kwargs)
         wrapped_view.__name__ = f.__name__
         return wrapped_view
     return decorator
-
 
 @app.route('/')
 def index():
@@ -147,6 +151,33 @@ def messages_board():
     """)
     messages = cursor.fetchall()
     return render_template('allmessages.html', messages=messages)
+
+@app.route('/message/<int:message_id>', methods=['GET', 'POST'])
+@login_required
+def one_message(message_id):
+    cursor = getCursor()
+    if request.method == 'POST':
+        content = request.form['content']
+        cursor.execute("INSERT INTO replies (message_id, user_id, content, created_at) VALUES (%s, %s, %s, %s)", (message_id, session['user_id'], content, datetime.now()))
+    cursor.execute("""
+        SELECT messages.message_id, messages.title, messages.content, messages.created_at, messages.user_id, 
+               users.username, users.profile_image, users.location
+        FROM messages 
+        JOIN users ON messages.user_id = users.user_id 
+        WHERE messages.message_id = %s
+    """, (message_id,))
+    message = cursor.fetchone()
+    
+    cursor.execute("""
+        SELECT replies.reply_id, replies.message_id, replies.content, replies.created_at, replies.user_id, 
+               users.username, users.profile_image, users.location
+        FROM replies 
+        JOIN users ON replies.user_id = users.user_id 
+        WHERE replies.message_id = %s
+        ORDER BY replies.created_at DESC
+    """, (message_id,))
+    replies = cursor.fetchall()
+    return render_template('one_message.html', message=message, replies=replies)
 
 if __name__ == '__main__':
     app.run(debug=True)

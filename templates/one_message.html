@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Message{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Message</h1>
+    <a href="{{ url_for('view_messages') }}" class="btn btn-secondary mb-3">Return to Messages</a>
+    <div class="card mb-3">
+        <div class="card-header d-flex align-items-center">
+            <img src="{{ url_for('static', filename='profile_images/' ~ message.profile_image) }}" alt="Profile Image" class="img-thumbnail" width="50" height="50" style="border-radius: 50%;">
+            <div class="ml-3">
+                <h5 class="card-title mb-0">{{ message.username }}</h5>
+                <small class="text-muted">{{ message.location }}</small>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ message.content }}</p>
+            <small class="text-muted">{{ message.created_at }}</small>
+            {% if session.user_id == message.user_id or session.role in ['moderator', 'admin'] %}
+                <form method="post" action="#" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this message?')">Delete</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class="replies mt-5">
+        <h2>Replies</h2>
+        {% for reply in replies %}
+            <div class="card mb-3">
+                <div class="card-header d-flex align-items-center">
+                    <img src="{{ url_for('static', filename='profile_images/' ~ reply.profile_image) }}" alt="Profile Image" class="img-thumbnail" width="40" height="40" style="border-radius: 50%;">
+                    <div class="ml-3">
+                        <h5 class="card-title mb-0">{{ reply.username }}</h5>
+                        <small class="text-muted">{{ reply.location }}</small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ reply.content }}</p>
+                    <small class="text-muted">{{ reply.created_at }}</small>
+                    {% if session.user_id == reply.user_id or session.role in ['moderator', 'admin'] %}
+                        <form method="post" action="#" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reply?')">Delete</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="reply-form mt-5">
+        <h2>Write a Reply</h2>
+        <form method="post">
+            <div class="form-group">
+                <textarea class="form-control" name="content" placeholder="Write a reply..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post Reply</button>
+        </form>
+    </div>
+{% endblock %}
