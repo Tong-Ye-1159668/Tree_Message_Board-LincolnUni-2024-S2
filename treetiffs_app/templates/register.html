@@ -6,40 +6,58 @@
 <h1 class="mt-5">Register</h1>
 <form method="post">
 
+  <!--Username-->
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" name="username" value="{{ username or '' }}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required>
-  </div>
-
-  <div class="form-group">
-    <label for="confirmPassword">Confirm Password</label>
-    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+    <input type="text" class="form-control" id="username" name="username" required>
+    <div id="usernameHelpBlock" class="form-text">
+      Your username must be 4-20 characters long and contain only letters, numbers, and underscores.
+    </div>
   </div>
   <p></p>
 
+  <!--Password-->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+    <div id="passwordHelpBlock" class="form-text">
+      Your password must be at least 8 characters long and contain both letters and digits.
+    </div>
+  </div>
+  <p></p>
+
+  <!--Confirm Password-->
+  <div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+    <div id="passwordHelpBlock" class="form-text">
+      Please confirm your password.
+    </div>
+  </div>
+  <p></p>
+
+  <!--Email-->
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email" value="{{ email or '' }}" required>
   </div>
   <p></p>
 
+  <!--First Name-->
   <div class="form-group">
     <label for="first_name">First Name</label>
     <input type="text" class="form-control" id="first_name" name="first_name" value="{{ first_name or '' }}" required>
   </div>
   <p></p>
 
+  <!--Last Name-->
   <div class="form-group">
     <label for="last_name">Last Name</label>
     <input type="text" class="form-control" id="last_name" name="last_name" value="{{ last_name or '' }}" required>
   </div>
   <p></p>
 
+  <!--Date of Birth-->
   <div class="form-group">
     <label for="birth_date">Date of Birth</label>
     <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ date_of_birth or '' }}"
@@ -47,12 +65,14 @@
   </div>
   <p></p>
 
+  <!--Location-->
   <div class="form-group">
     <label for="location">Location</label>
     <input type="text" class="form-control" id="location" name="location" value="{{ location or '' }}" required>
   </div>
   <p></p>
 
+  <!--Register Button-->
   <button type="submit" class="btn btn-primary">Register</button>
 </form>
 

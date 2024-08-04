@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Profile</h1>
+
+<!-- Flash messages section -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div>
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!--Update Profile Image-->
+<h2>Update Profile Image</h2>
+<form method="post" action="{{ url_for('update_profile_image') }}" enctype="multipart/form-data">
+    <div>
+        <input class="form-control form-control-lg" id="profile_image" type="file" name="profile_image" required>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+</form>
+
+<!--Remove Profile Image-->
+<form method="post" action="{{ url_for('remove_profile_image') }}" class="mt-2">
+    <button type="submit" class="btn btn-danger">Remove Profile Image</button>
+    <label class="form-label">Your profile image will revert to the default one.</label>
+</form>
+<hr>
+
+<!--Update Profile Details-->
+<h2>Update Profile Details</h2>
+<form method="post">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}"
+            required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ user.birth_date }}"
+            required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" value="{{ user.location }}" required>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
+<hr>
+
+<!--Change Password-->
+<h2>Change Password</h2>
+<form method="post" action="{{ url_for('change_password') }}">
+    <div class="form-group">
+        <label for="current_password">Current Password</label>
+        <input type="password" class="form-control" id="current_password" name="current_password" required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="new_password">New Password</label>
+        <input type="password" class="form-control" id="new_password" name="new_password" required>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="confirm_password">Confirm New Password</label>
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Change Password</button>
+</form>
+{% endblock %}

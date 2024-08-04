@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Edit Member</h1>
+
+<!-- Flash messages section -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div>
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- Edit User Form -->
+<form method="post">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" disabled
+            readonly>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" name="status">
+            <option value="active" {% if user.status=='active' %}selected{% endif %}>Active</option>
+            <option value="inactive" {% if user.status=='inactive' %}selected{% endif %}>Inactive</option>
+        </select>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select class="form-control" id="role" name="role">
+            <option value="member" {% if user.role=='member' %}selected{% endif %}>Member</option>
+            <option value="moderator" {% if user.role=='moderator' %}selected{% endif %}>Moderator</option>
+            <option value="admin" {% if user.role=='admin' %}selected{% endif %}>Admin</option>
+        </select>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}

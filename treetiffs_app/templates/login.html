@@ -2,6 +2,7 @@
 
 {% block title %}Login{% endblock %}
 
+<!-- Login form -->
 {% block content %}
 <h1 class="mt-5">Login</h1>
 <form method="post">
@@ -18,6 +19,7 @@
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
 
+<!--Display Signup link-->
 <hr>
 <div class="alert alert-info" role="alert">
   Not a member? <a href="{{ url_for('register') }}" class="alert-link">Sign up now!</a>

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+
+<!--Post Messages-->
+<h1 class="mt-5">Post Messages</h1>
+<form method="post" action="{{ url_for('messages') }}">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <p></p>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <p></p>
+        <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Post Message</button>
+</form>
+<hr>
+
+<!--Current Messages-->
+<p><span style="color:#2a9d8f; font-size:35px">Current Messages</span></p>
+{% for message in messages %}
+<div class="card mb-4">
+
+    <div class="card-header">
+        <h4 class="card-title"><b>Title: {{ message.title }}</b></h4>
+
+    </div>
+
+    <div class="card-body">
+        <p><span style="color:darkgreen; font-size:20px"><b>{{ message.content }}</b></span></p>
+        <img src="{{ url_for('static', filename='profile_images/' ~ message.profile_image) }}" class="rounded-circle"
+            width="32" height="32">
+        <b>{{ message.username }}</b> - from {{ message.location }}
+        <small class="text-muted float-right">{{ message.created_at.strftime('%d-%m-%Y %H:%M:%S') }}</small>
+
+        {% if session['user_id'] == message.user_id or session['role'] in ['moderator', 'admin'] %}
+        <p></p>
+        <form method="post" action="{{ url_for('delete_message', message_id=message.message_id) }}" class="d-inline">
+            <button type="submit" class="btn btn-danger btn-sm">Delete Message</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <!--Replies-->
+    <div class="card-footer">
+        <h6>Replies</h6>
+        <p></p>
+        {% if message.replies %}
+        {% for reply in message.replies %}
+        <div class="media mb-3">
+            <img src="{{ url_for('static', filename='profile_images/' ~ reply.profile_image) }}"
+                class="rounded-circle mr-3" width="25" height="25">
+            <b>{{ reply.username }}</b> - from {{ reply.location }} <small class="text-muted float-right">{{
+                reply.created_at.strftime('%d-%m-%Y %H:%M:%S') }}</small>
+            <div class="media-body">
+                <p><span style="color:darkgreen; font-size:18px"><b>{{ reply.content }}</b></span></p>
+                {% if session['user_id'] == reply.user_id or session['role'] in ['moderator', 'admin'] %}
+                <form method="post" action="{{ url_for('delete_reply', reply_id=reply.reply_id) }}" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete Reply</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <!--No Replies-->
+        {% else %}
+        <p>No Replies yet. Post the first reply now.</p>
+        {% endif %}
+
+        <!--Post Reply-->
+        <form method="post" action="{{ url_for('post_reply', message_id=message.message_id) }}">
+            <div class="form-group">
+                <label for="content">Reply</label>
+                <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
+            </div>
+            <p></p>
+            <button type="submit" class="btn btn-primary btn-sm">Reply</button>
+        </form>
+
+    </div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

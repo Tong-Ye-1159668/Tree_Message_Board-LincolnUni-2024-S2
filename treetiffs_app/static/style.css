@@ -3,6 +3,11 @@
 body{
   font-family: 'Urbanist', sans-serif;
   overflow-x: hidden;
+  background-image: url('/static/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1; 
 }
 
 .navb-item a{
@@ -19,8 +24,7 @@ header{
   height: 100px;
   display: flex;
   align-items: center;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(8, 57, 33, 0.25);
+  background-color: #b5e48c;
 }
 
 header .container-fluid{
@@ -28,11 +32,11 @@ header .container-fluid{
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 60px;
+  padding: 0 30px;
 }
 
 header .navb-logo img{
-  width: 170px;
+  width: 200px;
 }
 
 header .navb-items{
@@ -45,41 +49,44 @@ header .navb-items{
 header .navb-item{
   text-align: center;
   margin-inline: 15%;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 600;
   letter-spacing: 3px;
   color: #22577a;
   padding: 5px 0;
   transition: all .1s ease;
-  border-top: 0px solid #80ed99;
-  border-bottom: 0px solid #80ed99;
+  border-top: 0px solid #ffffff
+  border-bottom: 0px solid #ffffff;
   cursor: pointer;
 }
 
 header .navb-item:hover{
-  border-top: 3px solid #80ed99;
-  border-bottom: 3px solid #80ed99
+  border-top: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff
 }
 
 header .item-button a{
   background-color: #22577a;
+  border-radius: 10px;
   width: 180px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
-  font-weight: 600;
-  transition: all .5s ease;
+  font-weight: 800;
+  transition: all .3s ease;
 }
 
 header .item-button a:hover{
-  background-color: #80ed99;
+  background-color: #38a3a5;
 }
+
 
 .mobile-toggler i{
   font-size: 50px;
-  color: #22577a;
+  color: #ffffff;
 } 
 
 .mobile-toggler img{
@@ -254,4 +261,8 @@ header .item-button a:hover{
 .dropdown-item:hover {
   background-color: #80ed99; /* Hover background color */
   color: #ffffff; /* Hover text color */
+}
+
+.card-body {
+  background-color: #fefae0; ;
 }
