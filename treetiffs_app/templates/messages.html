@@ -42,7 +42,7 @@
         {% if session['user_id'] == message.user_id or session['role'] in ['moderator', 'admin'] %}
         <p></p>
         <form method="post" action="{{ url_for('delete_message', message_id=message.message_id) }}" class="d-inline">
-            <button type="submit" class="btn btn-danger btn-sm">Delete Message</button>
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this message?')">Delete Message</button>
         </form>
         {% endif %}
     </div>
@@ -62,7 +62,7 @@
                 <p><span style="color:darkgreen; font-size:18px"><b>{{ reply.content }}</b></span></p>
                 {% if session['user_id'] == reply.user_id or session['role'] in ['moderator', 'admin'] %}
                 <form method="post" action="{{ url_for('delete_reply', reply_id=reply.reply_id) }}" class="d-inline">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete Reply</button>
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reply?')">Delete Reply</button>
                 </form>
                 {% endif %}
             </div>
