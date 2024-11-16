@@ -1,5 +1,43 @@
 # Tree_Message_Board (Tree Tiffs)
 
+# Tree Message Board
+
+This repository contains a web application developed during Semester 2 of my Master of Applied Computing studies at Lincoln University. The project, part of the COMP 639 Studio Project, focuses on creating a secure, role-based message board for discussing tree-related topics. It demonstrates my skills in full-stack web development with an emphasis on security, user management, and responsive design.
+
+## Features
+- **User Roles and Access Control**:
+  - Three roles: Member, Moderator, Admin.
+  - Role-based access to features such as posting messages, moderating content, and managing users.
+- **Message Board**:
+  - Post and reply to messages.
+  - View and delete threads with proper validation.
+- **User Management**:
+  - Registration and login with password hashing and salting.
+  - Profile management, including updating details and changing passwords.
+  - Admin features: user role updates, status changes, and profile access.
+- **Responsive Design**:
+  - Bootstrap-powered interface with a tree-themed design.
+
+## Technical Details
+- **Technologies Used**: Python (Flask), MySQL, Bootstrap CSS.
+- **Security Features**:
+  - Secure password storage with hashing and salting (using `flask_hashing`).
+  - Session-based role and access management.
+- **Hosting**: Deployed on PythonAnywhere.
+- **Database Integration**:
+  - Designed according to a robust Entity Relationship Diagram (ERD).
+  - Includes creation and population scripts for test data.
+
+## Purpose
+This project highlights my ability to:
+- Implement secure, multi-user web applications.
+- Manage complex role-based access systems.
+- Develop scalable, responsive web interfaces using modern frameworks.
+
+This repository showcases my expertise in building and deploying full-stack applications with secure and user-friendly features.
+
+---
+
 This sample app (Tree Tiffs) demonstrates a simple message board that allows users to
 register, log in, view and post messages and replies, and change profiles. 
 
