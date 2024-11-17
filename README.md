@@ -3,6 +3,20 @@
 
 This repository contains a web application developed during Semester 2 of my Master of Applied Computing studies at Lincoln University. The project, part of the COMP 639 Studio Project, focuses on creating a secure, role-based message board for discussing tree-related topics. It demonstrates my skills in full-stack web development with an emphasis on security, user management, and responsive design.
 
+## Interface
+
+Main page
+
+https://github.com/Tong-Ye-1159668/Tree_Message_Board-LincolnUni-2024-S2/blob/main/readme_img/tmb-main.png?raw=true
+
+Message page
+
+https://github.com/Tong-Ye-1159668/Tree_Message_Board-LincolnUni-2024-S2/blob/main/readme_img/tmb-message.png?raw=true
+
+User Management page
+
+https://github.com/Tong-Ye-1159668/Tree_Message_Board-LincolnUni-2024-S2/blob/main/readme_img/tmb-user_mgmt.png?raw=true
+
 ## Features
 - **User Roles and Access Control**:
   - Three roles: Member, Moderator, Admin.
