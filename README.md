@@ -1,4 +1,5 @@
 # Tree_Message_Board (Tree Tiffs)
+#### Submitted on 04 August 2024
 
 This repository contains a web application developed during Semester 2 of my Master of Applied Computing studies at Lincoln University. The project, part of the COMP 639 Studio Project, focuses on creating a secure, role-based message board for discussing tree-related topics. It demonstrates my skills in full-stack web development with an emphasis on security, user management, and responsive design.
 
